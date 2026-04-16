@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Playfair+Display:ital,wght@1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #ffffff;
+    color: #0a0a0a;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  ::selection { background: #c8f04a; color: #0a0a0a; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #f5f5f5; }
+  ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 99px; }
+}
+
+/* ── CSS Variables ─────────────────────────── */
+:root {
+  --lime: #c8f04a;
+  --lime-light: #d8f76a;
+  --ink: #0a0a0a;
+  --ink-60: rgba(10,10,10,0.55);
+  --ink-30: rgba(10,10,10,0.3);
+  --ink-12: rgba(10,10,10,0.12);
+  --paper: #ffffff;
+  --paper-warm: #fafaf8;
+  --paper-grey: #f2f2f0;
+  --radius-card: 28px;
+}
+
+/* ── Typography ──────────────────────────────── */
+.display-xl {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3.2rem, 8vw, 8.5rem);
+  font-weight: 900;
+  line-height: 0.93;
+  letter-spacing: -0.04em;
+  color: #0a0a0a;
+}
+.display-lg {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2.5rem, 5.5vw, 6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  color: #0a0a0a;
+}
+.display-md {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  color: #0a0a0a;
+}
+.display-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(3rem, 7vw, 8rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  color: #0a0a0a;
+}
+.text-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+.text-body-lg {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-60);
+}
+.text-body {
+  font-size: 0.975rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink-60);
+}
+
+/* ── Buttons ───────────────────────────────── */
+.btn-pill-dark {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  background: #0a0a0a; color: #ffffff;
+  font-weight: 700; font-size: 0.9rem;
+  border-radius: 999px; border: 2px solid #0a0a0a;
+  cursor: pointer; transition: transform 0.18s ease, background 0.18s ease;
+  text-decoration: none; white-space: nowrap; letter-spacing: -0.01em;
+}
+.btn-pill-dark:hover { transform: scale(0.97); }
+.btn-pill-lime {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.9rem 1.8rem;
+  background: var(--lime); color: #0a0a0a;
+  font-weight: 700; font-size: 0.9rem;
+  border-radius: 999px; border: 2px solid var(--lime);
+  cursor: pointer; transition: transform 0.18s ease;
+  text-decoration: none; white-space: nowrap; letter-spacing: -0.01em;
+}
+.btn-pill-lime:hover { transform: scale(0.97); }
+.btn-pill-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  padding: 0.85rem 1.6rem;
+  background: transparent; color: #0a0a0a;
+  font-weight: 600; font-size: 0.9rem;
+  border-radius: 999px; border: 2px solid rgba(10,10,10,0.2);
+  cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease;
+  text-decoration: none; white-space: nowrap;
+}
+.btn-pill-ghost:hover { border-color: #0a0a0a; background: rgba(10,10,10,0.03); }
+
+/* ─────────────────────────────────────────────────────
+   INPUT FIELD SYSTEM — clean, no-icon-overlap
+   ─────────────────────────────────────────────────────
+   Rules:
+   1. No absolutely-positioned icons inside inputs
+   2. Placeholder uses a muted grey, clearly different from text
+   3. On focus: border turns ink, background white
+   4. Text is always full ink (#0a0a0a), never transparent
+*/
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.field-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  user-select: none;
+}
+.field {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: var(--paper-grey);
+  border: 2px solid transparent;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-weight: 500;
+  color: #0a0a0a;  /* always real ink — never transparent */
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  /* Prevent any inherited line-height weirdness */
+  line-height: 1.4;
+  appearance: none;
+  -webkit-appearance: none;
+}
+/* Placeholder: clearly muted, never confusable with typed text */
+.field::placeholder {
+  color: rgba(10,10,10,0.35);
+  font-weight: 400;
+}
+/* On focus: clear border, white background */
+.field:focus {
+  border-color: #0a0a0a;
+  background: #ffffff;
+  color: #0a0a0a;
+}
+/* Select fields get a custom arrow */
+select.field {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230a0a0a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 2.5rem;
+}
+/* Textarea */
+textarea.field { resize: vertical; min-height: 80px; }
+/* Date input icon override */
+input[type="date"].field::-webkit-calendar-picker-indicator {
+  opacity: 0.4;
+  cursor: pointer;
+}
+
+/* ── Search form variant — with side icons ─── */
+/* These use the icon-wrapper pattern, NOT absolute inside input */
+.field-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.field-with-icon .field-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(10,10,10,0.35);
+  pointer-events: none;
+  flex-shrink: 0;
+  /* prevent icon from creating any z-index stacking context */
+  z-index: 1;
+}
+.field-with-icon .field {
+  padding-left: 2.75rem; /* extra space for icon */
+  z-index: 0;
+  position: relative;
+}
+
+/* ── Cards ─────────────────────────────────── */
+.card-rounded { border-radius: var(--radius-card); background: #ffffff; overflow: hidden; }
+.card-ink { border-radius: var(--radius-card); background: #0a0a0a; color: #fff; overflow: hidden; }
+.card-lime { border-radius: var(--radius-card); background: var(--lime); color: #0a0a0a; overflow: hidden; }
+.card-grey { border-radius: var(--radius-card); background: var(--paper-grey); color: #0a0a0a; overflow: hidden; }
+
+/* ── Tags / Badges ──────────────────────────── */
+.tag { display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.22rem 0.75rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.03em; }
+.tag-dark { background: #0a0a0a; color: #fff; }
+.tag-lime { background: var(--lime); color: #0a0a0a; }
+.tag-grey { background: rgba(10,10,10,0.08); color: var(--ink-60); }
+.tag-green { background: #dcfce7; color: #15803d; }
+.tag-amber { background: #fef3c7; color: #92400e; }
+.tag-red { background: #fee2e2; color: #b91c1c; }
+.tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+/* ── Match bar ──────────────────────────────── */
+.match-track { height: 5px; background: rgba(10,10,10,0.08); border-radius: 99px; overflow: hidden; }
+.match-fill { height: 100%; border-radius: 99px; transition: width 0.9s cubic-bezier(0.34, 1.2, 0.64, 1); }
+
+/* ── Scroll reveal ──────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.08s; }
+.reveal-delay-2 { transition-delay: 0.18s; }
+.reveal-delay-3 { transition-delay: 0.28s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ── Glass nav ──────────────────────────────── */
+.glass-nav {
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(10,10,10,0.06);
+}
+
+/* ── Hover underline ────────────────────────── */
+.hover-underline { position: relative; }
+.hover-underline::after { content: ''; position: absolute; bottom: -1px; left: 0; width: 0; height: 1.5px; background: currentColor; transition: width 0.22s ease; border-radius: 99px; }
+.hover-underline:hover::after { width: 100%; }
+
+/* ── Skeleton ───────────────────────────────── */
+.skeleton { background: linear-gradient(90deg, #f0f0f0 25%, #e5e5e5 50%, #f0f0f0 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: 10px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* ── SOS ring ───────────────────────────────── */
+.sos-ring { animation: sos-pulse 2.2s ease-out infinite; }
+@keyframes sos-pulse { 0% { opacity: 0.6; transform: scale(1); } 70% { opacity: 0; transform: scale(2.2); } 100% { opacity: 0; transform: scale(2.2); } }
+
+/* ── Leaflet override ───────────────────────── */
+.leaflet-container { border-radius: 20px; z-index: 0; }
+.leaflet-control-attribution { display: none; }
+
+/* ── Floating lime orb ──────────────────────── */
+@keyframes float-orb { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+.float-orb { animation: float-orb 7s ease-in-out infinite; }
+.float-orb-slow { animation: float-orb 10s ease-in-out infinite reverse; }
